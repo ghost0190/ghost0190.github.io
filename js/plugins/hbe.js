@@ -212,15 +212,30 @@ export function initHBE() {
         if (!decoded.startsWith(knownPrefix)) {
           throw "Decode successfully but not start with KnownPrefix.";
         }
+// ================== “重新上锁”按钮 (样式微调) ==================
 
-        const hideButton = document.createElement("button");
-        hideButton.textContent = "Encrypt again";
-        hideButton.type = "button";
-        hideButton.classList.add("hbe-button");
-        hideButton.addEventListener("click", () => {
-          window.localStorage.removeItem(storageName);
-          window.location.reload();
-        });
+    const hideButton = document.createElement("button");
+    hideButton.textContent = "隐藏内容"; 
+    hideButton.type = "button";
+    hideButton.classList.add("hbe-button");
+
+    Object.assign(hideButton.style, {
+        display: "inline-flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        padding: "0 15px",
+        height: "35px",
+        marginTop: "20px", // 解锁后给点上边距
+        verticalAlign: "middle"
+    });
+
+    hideButton.addEventListener("click", () => {
+      window.localStorage.removeItem(storageName);
+      window.location.reload();
+    });
+
+    // =============================================================
 
         document.getElementById("hexo-blog-encrypt").style.display = "inline";
         document.getElementById("hexo-blog-encrypt").innerHTML = "";
@@ -313,6 +328,9 @@ export function initHBE() {
         decrypt(decryptKey, iv, hmacKey).then((result) => {
           console.log(`Decrypt result: ${result}`);
           if (result) {
+            // 找到提交按钮并把它删掉
+            const btnParams = document.getElementById("hbe-submit-btn");
+            if (btnParams) btnParams.parentNode.removeChild(btnParams);
             cryptoObj.subtle.exportKey("jwk", decryptKey).then((dk) => {
               cryptoObj.subtle.exportKey("jwk", hmacKey).then((hmk) => {
                 const newStorageData = {
@@ -327,9 +345,55 @@ export function initHBE() {
         });
       }
     });
+
+
+// ================== 修复版：安全添加按钮 ==================
+
+    // 1. 创建提交按钮
+    const submitBtn = document.createElement("button");
+    submitBtn.innerHTML = "↑"; 
+    submitBtn.id = "hbe-submit-btn"; // 给它一个身份证，方便待会抓捕
+    submitBtn.type = "button";
+
+    // 2. 样式设置（只改按钮，不碰输入框）
+    Object.assign(submitBtn.style, {
+        display: "inline-block",
+        marginLeft: "8px",            
+        padding: "0 12px",            // 用内边距撑开大小
+        height: "38px",               // 给个常规高度，通常主题的输入框都在 36-40px 之间
+        lineHeight: "1",              // 防止文字偏上或偏下
+        borderRadius: "4px",          
+        border: "none",               
+        backgroundColor: "#49b1f5",   
+        color: "#ffffff",             
+        fontSize: "20px",             
+        fontWeight: "bold",
+        cursor: "pointer",
+        verticalAlign: "middle",      // 尽量跟输入框对齐
+        transition: "all 0.3s"
+    });
+
+    // 交互效果
+    submitBtn.onmouseover = () => submitBtn.style.backgroundColor = "#2d98de";
+    submitBtn.onmouseout = () => submitBtn.style.backgroundColor = "#49b1f5";
+
+    // 3. 点击 = 模拟回车
+    submitBtn.addEventListener("click", () => {
+        mainElement.dispatchEvent(new KeyboardEvent("keydown", {
+            key: "Enter",
+            keyCode: 13,
+            which: 13,
+            bubbles: true,
+            cancelable: true
+        }));
+    });
+
+    // 4. 插入按钮 (插入到输入框后面)
+    if (mainElement && mainElement.parentNode) {
+        mainElement.parentNode.insertBefore(submitBtn, mainElement.nextSibling);
+    }
+    // =======================================================
   }
 
   hbeLoader();
 }
-
-// initHBE();
