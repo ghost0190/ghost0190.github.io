@@ -351,7 +351,7 @@ export function initHBE() {
 
     // 1. 创建提交按钮
     const submitBtn = document.createElement("button");
-    submitBtn.innerHTML = "↑"; 
+    submitBtn.innerHTML = "验证"; 
     submitBtn.id = "hbe-submit-btn"; // 给它一个身份证，方便待会抓捕
     submitBtn.type = "button";
 
