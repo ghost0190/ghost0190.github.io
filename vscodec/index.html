@@ -123,7 +123,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/tags/cs61b/"/>
+    <link rel="canonical" href="http://example.com/vscodec/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -132,14 +132,18 @@
     
         
         <meta name="description" content="Ghost0190的技术修炼之路.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/CS61B/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下的C语言编译环境配置（VS Code）">
+<meta property="og:url" content="http://example.com/vscodec/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Ghost0190的技术修炼之路.">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-12-05T05:00:00.000Z">
+<meta property="article:modified_time" content="2025-12-05T05:00:00.000Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="编程">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
     
@@ -153,7 +157,7 @@
     
     <title>
         
-            标签: CS61B | Ghost0190&#39;s
+            Windows下的C语言编译环境配置（VS Code） | Ghost0190&#39;s
         
     </title>
 
@@ -194,7 +198,7 @@
 
     <script id="hexo-configurations">
     window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":false,"preloader":{"enable":true,"custom_message":"Ghost0190's Blog"},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Ghost0190的技术修炼之路."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ghost0190's Blog","subtitle":{"text":["Keep Coding."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/ghost0190","instagram":null,"zhihu":null,"twitter":null,"email":"ghost0190.out@outlook.com"},"qrs":null}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":null},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-home"},"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder-open"},"About":{"path":"/about","icon":"fa-solid fa-user"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"cloud"},"home":{"sidebar":{"enable":true,"position":"right","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"YYYY/MM/DD HH:mm:ss","excerpt_length":30,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/12/04 11:45:14"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":false,"preloader":{"enable":true,"custom_message":"Ghost0190's Blog"},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Ghost0190的技术修炼之路."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ghost0190's Blog","subtitle":{"text":["Keep Coding."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/ghost0190","instagram":null,"zhihu":null,"twitter":null,"email":"ghost0190.out@outlook.com"},"qrs":null}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":null},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-home"},"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder-open"},"About":{"path":"/about","icon":"fa-solid fa-user"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"list"},"home":{"sidebar":{"enable":true,"position":"right","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"YYYY/MM/DD HH:mm:ss","excerpt_length":80,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/12/04 11:45:14"};
     window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
     window.data = {"masonry":false};
   </script>
@@ -420,7 +424,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class="active"
+                                <a class=""
                                    href="/tags"
                                         >
                                     <i class="fa-solid fa-tags fa-fw"></i>
@@ -515,7 +519,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
                            href="/tags"
                         >
                             <span>
@@ -577,15 +581,15 @@
 
         <div class="statistics flex justify-around my-2.5">
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
         <div class="label text-third-text-color text-sm">标签</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">2</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
         <div class="label text-third-text-color text-sm">分类</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">8</div>
         <div class="label text-third-text-color text-sm">文章</div>
     </a>
 </div>
@@ -602,58 +606,286 @@
 			
 
 			<div class="main-content">
-				<div class="page-template-container">
-	
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-	
-	<div class="tag-name">
-    <i class="fa-solid fa-tag"></i>&nbsp;CS61B
-</div>
-<div class="tag-post-list">
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Windows下的C语言编译环境配置（VS Code）</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="https://github.com/ghost0190.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Ghost0190</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-12-05 13:00</span>
+        <span class="mobile">2025-12-05 13:00</span>
+        <span class="hover-info">创建</span>
+    </span>
     
-<div class="archive-list-container">
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-12-05 13:00</span>
+            <span class="mobile">2025-12-05 13:00</span>
+            <span class="hover-info">更新</span>
+        </span>
     
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2025</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">1</span>
-            </div>
-            
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
                 
                     
+                        
+                        <li>
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/">编程技术</a>&nbsp;
+                        </li>
                     
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='12-04'>
-                    
-                    <a href="/2025/12/04/hello-world/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Hello World</span>
-                    </a>
                     
                 
-                </li> <!-- Ensure the last item is properly closed -->
             </ul>
-        </section>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BC%96%E7%A8%8B/">编程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>900 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
     
 </div>
-</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>本文将带领您在VScode中配置编译器，使用MSY32配置MinGw-64以运行C&#x2F;C++程序</p>
+<h3 id="一-配置VS-Code"><a href="#一-配置VS-Code" class="headerlink" title="一.配置VS Code"></a>一.配置VS Code</h3><p>安装必要拓展 ：<code>C/C++</code>    <code>C/C++ Extension Pack</code>   <code>Code Runner</code></p>
+<blockquote>
+<p>如提示是否信任请点击信任相关选项，请检查，您应安装有以下拓展：</p>
+</blockquote>
+<img  width="299" height="461" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/786f693d-2e8a-434d-b4ac-d1cf1e3af143"
+                      
+                >
+
+<h3 id="二-配置编译器"><a href="#二-配置编译器" class="headerlink" title="二.配置编译器"></a>二.配置编译器</h3><p><strong>安装 MinGW-w64 工具链</strong><br>通过 <a class="link"   target="_blank" rel="noopener" href="https://www.msys2.org/" >MSYS2<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 获取最新版本的 MinGW-w64，它提供了 GCC、MinGW-w64 以及其他有用的 C++ 工具和库的最新原生版本。这将为你提供必要的工具来编译代码、调试代码并将其配置为与 <a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editing/intellisense" >IntelliSense<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 配合使用。</p>
+<ol>
+<li>您可以从 MSYS2 页面下载最新的安装程序，或使用此<a class="link"   target="_blank" rel="noopener" href="https://github.com/msys2/msys2-installer/releases/download/2024-12-08/msys2-x86_64-20241208.exe" >安装程序的直接链接<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</li>
+<li>运行安装程序并按照安装向导的步骤进行作。请注意，MSYS2 需要 64 位 Windows 8.1 或更高版本。</li>
+<li>在向导中，选择所需的安装文件夹。记录此目录以备后用。在大多数情况下，推荐的目录是可以接受的。当您开始设置开始菜单快捷方式步骤时，这同样适用。完成后，确保选中“立即运行 MSYS2”框，然后选择“完成”。这将为您打开一个 MSYS2 终端窗口。</li>
+<li>在此终端中，通过运行以下命令安装 MinGW-w64 工具链：</li>
+</ol>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain</span><br></pre></td></tr></table></figure></div>
+
+<ol start="5">
+<li>按 Enter 接受工具链组中的默认包数</li>
+</ol>
+<img  width="1270" height="426" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/4f507dce-9c46-4ae9-b4e9-84acf2dd7c48"
+                      
+                >
+
+<ol start="6">
+<li>当提示是否继续安装时输入 Y</li>
+</ol>
+<img  width="723" height="414" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/a6372b05-d8d6-4b3b-99e1-05d3d78c5a36"
+                      
+                >
+
+<p>安装完成如上图所示</p>
+<ol start="7">
+<li>使用以下步骤将 MinGW-w64 bin 文件夹的路径 添加到 Windows PATH 环境变量中：</li>
+</ol>
+<ul>
+<li>在 Windows 搜索栏中，键入“设置”以打开 Windows 设置。</li>
+<li>搜索 编辑您帐户的环境变量。</li>
+<li>在用户变量中，选择变量Path，然后选择编辑。</li>
+<li>选择新建并将您在安装过程中记录的 MinGW-w64 目标文件夹添加到列表中。如果您使用了上述默认设置，则这将是路径C:\msys64\ucrt64\bin</li>
+<li>选择“确定”，然后在“环境变量”窗口中再次选择“确定”以更新环境变量。 您必须重新打开任何控制台窗口才能使更新的环境变量可用。</li>
+</ul>
+<img  width="529" height="565" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/88ece168-04a6-43bc-a6c9-27ea1f37d880"
+                      
+                >
+
+<p><strong>检查您的 MinGW 安装</strong><br>要检查您的 MinGW-w64 工具是否已正确安装且可用，请打开新的命令提示符并键入：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gcc --version</span><br><span class="line">g++ --version</span><br><span class="line">gdb --version</span><br></pre></td></tr></table></figure></div>
+<p>您应该会看到输出，说明您安装了哪些版本的 GCC、g++ 和 GDB<br><img  width="979" height="513" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/6d9067e9-6f80-4e83-8a67-d695993be07d"
+                      
+                ></p>
+<h3 id="三-创建-Hello-World-应用"><a href="#三-创建-Hello-World-应用" class="headerlink" title="三.创建 Hello World 应用"></a>三.创建 Hello World 应用</h3><p>回到桌面，新建一个文本文件，并将其重命名为 <code>main.c</code> </p>
+<img  width="89" height="86" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/567bdfb4-33da-4147-936b-f088cec256c9"
+                      
+                >
+
+<blockquote>
+<p>如未显示拓展名，请在资源管理器查看选项中开启</p>
+</blockquote>
+<p><strong>Win10</strong><br><img  width="1125" height="168" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/1cc9343f-0343-45a0-bf95-000b1cb52f5e"
+                      
+                ></p>
+<p><strong>Win11</strong><br><img  width="328" height="569" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/e1da27fe-f705-4a84-a630-626e289e2d92"
+                      
+                ></p>
+<p>使用VS Code打开<code>main.c</code>，如提示是否信任该文件，请选择信任或打开，并输入以下内容</p>
+<div class="code-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Hello,World!\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>现在按 Ctrl+S 保存文件,您还可以启用<strong>自动保存</strong>以自动保存文件更改，方法是选择文件&gt;自动保存。</p>
+<p>现在点击右上角运行按钮，并选择GCC编译器</p>
+<blockquote>
+<p>您还可以使用VS Code文件夹功能，在VS Code侧边栏资源管理器选择卡中，可添加信任的文件夹，以进行更方便的文件管理操作，且在第一次运行后自动将选择的编译器设为默认，无需每次选择</p>
+</blockquote>
+<img  width="1414" height="779" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/24d6bec9-fa03-403c-bc0f-f5ca3096c16c"
+                      
+                >
+
+<p>在下方的终端中，已正确显示Hello,World!</p>
+<img  width="1534" height="1059" alt="Image" 
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://github.com/user-attachments/assets/cac9a862-35e4-4d7f-a56a-4a272a8376b5"
+                      
+                >
+
+<p>祝贺！你刚刚在 VS Code 中运行了你的第一个C语言程序！</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/cpp/config-mingw" >原文地址<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+
+		</div>
+
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E7%BC%96%E7%A8%8B/">#编程</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/private01/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">私密文章01</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/hello-world/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">Hello World</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
 	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">Windows下的C语言编译环境配置（VS Code）</div>
+		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E9%85%8D%E7%BD%AEVS-Code"><span class="nav-text">一.配置VS Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-text">二.配置编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%88%9B%E5%BB%BA-Hello-World-%E5%BA%94%E7%94%A8"><span class="nav-text">三.创建 Hello World 应用</span></a></li></ol>
 
-	<div class="page-template-content markdown-body">
-		
-
-		
-	</div>
-
-	<div class="page-template-comments">
-		
 	</div>
 </div>
-
-<div class="paginator">
-	<span class="page-number current">1</span>
+	</div>
+	
 </div>
-  
 			</div>
 
 			
@@ -674,11 +906,11 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        共撰写了 3 篇文章
+                        共撰写了 8 篇文章
                     </span>
                     
                         <span>
-                            共 906 字
+                            共 3.7k 字
                         </span>
                     
                 </p>
@@ -719,6 +951,22 @@
 		</div>
 	</div>
 
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
 	
 
 	<div class="right-side-tools-container">
@@ -789,6 +1037,7 @@
 	
 
 </main>
+
 
 
 	
