@@ -785,7 +785,7 @@
 <li><strong>品牌标识</strong>：这是我在互联网上的独立门牌号。</li>
 <li><strong>架构基础</strong>：有了它，我才能接入 Cloudflare 这样的顶级 CDN 服务商。</li>
 </ul>
-<h2 id="进阶：DNS-配置与-Cloudflare-的博弈"><a href="#进阶：DNS-配置与-Cloudflare-的博弈" class="headerlink" title="进阶：DNS 配置与 Cloudflare 的博弈"></a>进阶：DNS 配置与 Cloudflare 的博弈</h2><p>买完域名，我并没有直接解析到 GitHub，而是选择了<strong>Cloudflare</strong>来接管 DNS。这不仅是为了加速，更是为了安全（HTTPS）。</p>
+<h2 id="进阶：DNS-配置与-Cloudflare-的博弈"><a href="#进阶：DNS-配置与-Cloudflare-的博弈" class="headerlink" title="进阶：DNS 配置与 Cloudflare 的博弈"></a>进阶：DNS 配置与 Cloudflare 的博弈</h2><p>买完域名，我并没有直接解析到 GitHub，而是选择了 <strong>Cloudflare</strong> 来接管 DNS。这不仅是为了加速，更是为了安全（HTTPS）。</p>
 <h3 id="1-域名解析的“坑”"><a href="#1-域名解析的“坑”" class="headerlink" title="1. 域名解析的“坑”"></a>1. 域名解析的“坑”</h3><p>我将域名的 Nameservers 修改为 Cloudflare 提供的服务器。在设置 DNS 记录时，我没有选择直连（DNS Only），而是开启了 <strong>Proxy（小黄云）</strong> 模式。</p>
 <p>这意味着：<code>用户 -&gt; Cloudflare 边缘节点 -&gt; GitHub Pages</code>。</p>
 <p><img  
@@ -799,7 +799,7 @@
                      data-src="https://img.ghost0190.xyz/img/20251207234129.png"
                       alt="20251207234129"
                 ><br>理论上，Cloudflare 的全球 CDN 应该能加速访问，但在实际配置中，我遇到了两个大问题。</p>
-<h3 id="2-DNSSEC-的“僵尸死锁”"><a href="#2-DNSSEC-的“僵尸死锁”" class="headerlink" title="2. DNSSEC 的“僵尸死锁”"></a>2. DNSSEC 的“僵尸死锁”</h3><p>这是我遇到的最大 BOSS。在转移 DNS 的过程中，因为在 Namecheap 注册局残留了旧的**DS记录 (Delegation Signer)**，导致 DNSSEC 校验失败。</p>
+<h3 id="2-DNSSEC-的“僵尸死锁”"><a href="#2-DNSSEC-的“僵尸死锁”" class="headerlink" title="2. DNSSEC 的“僵尸死锁”"></a>2. DNSSEC 的“僵尸死锁”</h3><p>这是我遇到的最大 BOSS。在转移 DNS 的过程中，因为在 Namecheap 注册局残留了旧的 <strong>DS记录 (Delegation Signer)</strong> ，导致 DNSSEC 校验失败。</p>
 <p><strong>表现：</strong> 域名解析配置完全正确，但全球所有 DNS 服务器都拒绝解析，网站直接打不开。</p>
 <p><strong>解决：</strong> 使用 DNSViz 工具排查签名链，确认是“信任链断裂”。最终联系客服在注册局层面清除了残留记录，才解开了这个死锁。</p>
 <p><img  
@@ -810,14 +810,14 @@
                 ></p>
 <h3 id="3-速度优化的取舍"><a href="#3-速度优化的取舍" class="headerlink" title="3. 速度优化的取舍"></a>3. 速度优化的取舍</h3><p>接入 Cloudflare 后，我发现部分 JS 脚本依然加载缓慢。</p>
 <ul>
-<li><strong>Rocket Loader</strong>：Cloudflare 自带的这个 JS 异步加载功能，虽然能跑分，但会破坏 Hexo 主题的渲染逻辑，导致页面空白。我果断关闭了它。</li>
-<li>**HTTP&#x2F;3(QUIC)**：为了对抗丢包，我强制开启了 HTTP&#x2F;3 协议，显著提升了在弱网环境下的连接稳定性。</li>
+<li><strong>Rocket Loader</strong> ：Cloudflare 自带的这个 JS 异步加载功能，虽然能跑分，但会破坏 Hexo 主题的渲染逻辑，导致页面空白。我果断关闭了它。</li>
+<li><strong>HTTP&#x2F;3(QUIC)</strong> ：为了对抗丢包，我强制开启了 HTTP&#x2F;3 协议，显著提升了在弱网环境下的连接稳定性。</li>
 </ul>
 <h2 id="终极挑战：自建图片-CDN-Serverless-实践"><a href="#终极挑战：自建图片-CDN-Serverless-实践" class="headerlink" title="终极挑战：自建图片 CDN (Serverless 实践)"></a>终极挑战：自建图片 CDN (Serverless 实践)</h2><p>为了解决第三方图床（如 jsDelivr）在国内不稳定的问题，我利用 <strong>Cloudflare Workers</strong> 编写了一个反向代理服务，将 <code>img.ghost0190.xyz</code> 的流量无缝转发到 GitHub 仓库，实现了图片加载速度的质的飞跃。</p>
 <blockquote>
 <p>💡 关于图床改造的具体技术细节，我在另一篇文章中有详细记录：《<a class="link"   target="_blank" rel="noopener" href="https://ghost0190.xyz/img/" >从 DNS 到反向代理：基于 Cloudflare Workers 自建高性能图片 CDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>》</p>
 </blockquote>
-<h1 id="四、工作流的优化：VS-Code-Automation"><a href="#四、工作流的优化：VS-Code-Automation" class="headerlink" title="四、工作流的优化：VS Code Automation"></a>四、工作流的优化：VS Code Automation</h1><p>我不喜欢繁琐的命令行。每次发文章都要敲 <code>hexo n</code>、<code>hexo g</code>、<code>hexo d</code>，这太“低效”了。<br>于是，我研究了 **VSCodeTasks(<code>tasks.json</code>)**，编写了一套自动化脚本：</p>
+<h1 id="四、工作流的优化：VS-Code-Automation"><a href="#四、工作流的优化：VS-Code-Automation" class="headerlink" title="四、工作流的优化：VS Code Automation"></a>四、工作流的优化：VS Code Automation</h1><p>我不喜欢繁琐的命令行。每次发文章都要敲 <code>hexo n</code>、<code>hexo g</code>、<code>hexo d</code>，这太“低效”了。<br>于是，我研究了 <strong>VS CodeT asks(<code>tasks.json</code>)</strong> ，编写了一套自动化脚本：</p>
 <ul>
 <li><strong>一键新建</strong>：输入文件名，自动生成带特定 Front-matter 的文章并打开编辑器。</li>
 <li><strong>一键部署</strong>：自动清理缓存、重新生成、推送到 GitHub，并附带时间戳 Commit 信息。</li>
