@@ -701,41 +701,16 @@
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/wp-content/uploads/2025/10/steamcommunity_302_AMD64_V13.0.07_fix.zip" >直接下载<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://wwid.lanzouw.com/iAFkT37g1wni" >网盘下载<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/18682/" >更新日志<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><img  width="412" height="142" alt="Image" 
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://github.com/user-attachments/assets/7b8f9319-7271-42c8-ad10-6907edb3c341"
-                      
-                >
-
-<p>设置说明</p>
-<img  width="1048" height="962" alt="Image" 
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://github.com/user-attachments/assets/c5f2b39d-d602-428b-84d5-fc3aa8c2cdaf"
-                      
-                >
-
-<p>启动服务 – 启动后台服务<br>退出UI – (退出前端界面[服务启动退出UI,后端仍会在后台运行])<br>设置 – 进入设置页<br><img  width="412" height="142" alt="Image" 
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://github.com/user-attachments/assets/24ebf42e-12ce-4a9c-8097-face6e1e30ba"
-                      
-                ></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>设置说明</p>
+<p>启动服务 – 启动后台服务<br>退出UI – (退出前端界面[服务启动退出UI,后端仍会在后台运行])<br>设置 – 进入设置页</p>
 <p>停止服务 – 停止后台服务</p>
-<img  width="709" height="791" alt="Image" 
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://github.com/user-attachments/assets/87a86ded-9930-4883-9195-3ef4f4ca4fee"
-                      
-                >
-
 <p>1.本地反代功能设置开关<br>2.证书设置 – 重置根证书(启动服务后将生成并导入新的根证书到系统)<br>3.模式开关 – Hosts 及 系统代理<br>自动修改系统hosts – 关闭时 启动服务后 将不会自动修改系统hosts文件<br>自动修改系统代理 – 关闭时 启动服务后 将不自动修改系统代理&#x2F;PAC规则<br>注意:<br>普通用户二者至少开其一,否则将仅监听端口而不会自动生效<br>全关闭请手动写入hosts&#x2F;设置系统代理</p>
 <p>本地监听IP – 服务监听IP,默认为127.0.0.1,与其他服务冲突时可尝试127.0.0.2</p>
 <p>系统代理:<br>禁用+不监听 – 禁用系统代理模式的监听功能,该功能将完全失效(包括手动指定IP端口)<br>PAC模式 – 修改系统”自动配置代理服务器(PAC)”,将仅对勾选的规则域名生效,其他域名不处理(规则详见pac.txt)<br>全局代理 – 修改系统”代理设置”,将直接接管所有经过系统代理的流量(对勾选规则+CDN优选生效,其他直连)<br>注意:(自动设置PAC&#x2F;全局代理仅支持Windows,MacOS&#x2F;Linux需手动设置代理)<br>4.全局设置<br>开机运行 – 前台:开机时前台运行(仅Windows),弹出UI窗口<br>开机运行 – 后台服务(无界面):仅启动后端服务,不会允许前台UI窗口<br>禁用 – 禁用开机运行</p>
 <p>自动启动服务(前台) – 前台UI运行后程序将自动点击启动服务,搭配前台开机运行&#x3D;带界面运行+自动启动服务<br>启动服务后自动更新配置 – 服务启动后将自动检测本地反代是否更新,若更新将在下次启动服务时生效(推荐开启)<br>5.Steam登录-本地反代 – 将Steam登录请求重定向至指定服务器以加速登录速度[非跨区]<br>(该功能目前Windows不可用,仅支持MacOS&#x2F;Linux)<br>6.高级设置<br>CDN优选 – 对指定CDN进行自动测速+指定IP,以加快访问速度,针对Steam访问建议开启Akamai,其他按需开启&#x2F;可搭配系统代理实现高级用法<br>速率限制 – 限制测速时的最高速率,防止测速时满带宽(每个CDN持续5秒)影响正常网络访问<br>上游域名(Steam相关) – 更改Steam相关访问时运营商防火墙识别的域名,用于规避个别运营商干扰</p>
 <p>高级用法: 系统代理 搭配 CDN优选,实现自定义域名的CDN优选&#x2F;全局访问CDN优选<br>PAC+CDN优选:<br>1.开启 自动修改系统代理<br>2.系统代理 选择 PAC模式<br>3.勾选CDN优选<br>4.将需要被CDN优选的域名&#x2F;顶级域名写入 pac_user.txt (每行1个)<br>5.保存后重启服务 [MacOS&#x2F;Linux需手动设置代理,默认PAC为<a class="link"   target="_blank" rel="noopener" href="http://127.0.0.1/pac.txt?S302%5D" >http://127.0.0.1:80/pac.txt?S302]<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
-<p>效果: 此时除了打勾规则外,写入的自定义域名也将经过程序处理<br>pac_user.txt内的域名若远程IP符合对应CDN的IP范围的访问将自动被重定向到优选IP<br>全局代理+CDN优选:<br>1.开启 自动修改系统代理<br>2.系统代理 选择 全局代理<br>3.勾选CDN优选<br>4.保存后重启服务 [MacOS&#x2F;Linux需手动设置代理,默认代理IP端口为<a href="http://127.0.0.1:80]">http://127.0.0.1:80]</a><br>效果: 此时除了打勾规则外,所有经过系统代理且远程IP符合对应CDN的IP范围将自动被重定向到优选IP<br><a class="link"   target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/knowledge-base/steamcommunity_302_13_manual/" >原文地址<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+<p>效果: 此时除了打勾规则外,写入的自定义域名也将经过程序处理<br>pac_user.txt内的域名若远程IP符合对应CDN的IP范围的访问将自动被重定向到优选IP<br>全局代理+CDN优选:<br>1.开启 自动修改系统代理<br>2.系统代理 选择 全局代理<br>3.勾选CDN优选<br>4.保存后重启服务 [MacOS&#x2F;Linux需手动设置代理,默认代理IP端口为<a href="http://127.0.0.1:80]">http://127.0.0.1:80]</a><br>效果: 此时除了打勾规则外,所有经过系统代理且远程IP符合对应CDN的IP范围将自动被重定向到优选IP</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.dogfight360.com/blog/knowledge-base/steamcommunity_302_13_manual/" >原文地址<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 
 		</div>
 
@@ -825,7 +800,7 @@
                     </span>
                     
                         <span>
-                            共 7.6k 字
+                            共 7.5k 字
                         </span>
                     
                 </p>
