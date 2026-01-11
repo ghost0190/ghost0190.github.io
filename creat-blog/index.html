@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Ghost0190">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/creat-blog/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Ghost0190的技术修炼之路.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello World！--建站日记">
+<meta property="og:url" content="http://example.com/creat-blog/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ghost0190的技术修炼之路.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-12-07T04:02:22.000Z">
+<meta property="article:modified_time" content="2025-12-07T04:02:22.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术，编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Hello World！--建站日记 | Ghost0190&#39;s Blog
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+        
+<script src="/js/build/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":false,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":false,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":false,"preloader":{"enable":true,"custom_message":"Ghost0190's Blog"},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Ghost0190的技术修炼之路."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Ghost0190's Blog","subtitle":{"text":["Keep Coding."],"hitokoto":{"enable":true,"show_author":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"style":"default","links":{"github":"https://github.com/ghost0190","instagram":null,"zhihu":null,"twitter":null,"email":"ghost0190.out@outlook.com"},"qrs":null}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":null},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-solid fa-home"},"Tags":{"path":"/tags","icon":"fa-solid fa-tags"},"Categories":{"path":"/categories","icon":"fa-solid fa-folder-open"},"About":{"path":"/about","icon":"fa-solid fa-user"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"list"},"home":{"sidebar":{"enable":true,"position":"right","first_item":"info","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"YYYY/MM/DD HH:mm:ss","excerpt_length":80,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/12/04 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+</div>
+
+<style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Ghost0190&#39;s Blog
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({ loop: true })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [20, 0],
+                translateZ: 0,
+                opacity: [0, 1],
+                filter: ['blur(5px)', 'blur(0px)'],
+                easing: "easeOutExpo",
+                duration: 1200,
+                delay: (el, i) => 300 + 20 * i,
+            })
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [0, -20],
+                opacity: [1, 0],
+                filter: ['blur(0px)', 'blur(5px)'],
+                easing: "easeInExpo",
+                duration: 1000,
+                delay: (el, i) => 15 * i,
+                complete: function() {
+                    hidePreloader();
+                }
+            }, '-=700');
+
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Ghost0190&#39;s Blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-solid fa-home fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    标签
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/categories"
+                                        >
+                                    <i class="fa-solid fa-folder-open fa-fw"></i>
+                                    分类
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/about"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    关于
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-solid fa-home fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags"
+                        >
+                            <span>
+                                标签
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/categories"
+                        >
+                            <span>
+                                分类
+                            </span>
+                            
+                                <i class="fa-solid fa-folder-open fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/about"
+                        >
+                            <span>
+                                关于
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">6</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">13</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="https://img.ghost0190.xyz/img/20251207233502.png" alt="Hello World！--建站日记" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">Hello World！--建站日记</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="https://github.com/ghost0190.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Ghost0190</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-12-07 12:02:22</span>
+        <span class="mobile">2025-12-07 12:02:22</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-12-07 12:02:22</span>
+            <span class="mobile">2025-12-07 12:02:22</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E7%BC%96%E7%A8%8B/">开发编程</a>&nbsp;
+                        </li>
+                    
+                    
+                
+                    
+                        
+                            <li>></li>
+                        
+                        <li>
+                            <a href="/categories/%E5%BC%80%E5%8F%91%E7%BC%96%E7%A8%8B/Web/">Web</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF%EF%BC%8C%E7%BC%96%E7%A8%8B/">技术，编程</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+		<div class="article-expire mt-4 mx-2 sm:mx-6 md:mx-8 note p-4 rounded-lg red icon hidden" id="expiration-container">
+			<i class="expire-icon fa-solid fa-timer mr-0.5 text-red-600 dark:text-red-400"></i>
+			<span class="expire-label text-red-600 dark:text-red-400 " id="expiration-date">这篇文章最后更新于 some 天前，内容可能已经过时。</span>
+		</div>
+
+		<script data-swup-reload-script>
+			function updateExpirationDate() {
+				try {
+					const expiredDate = new Date("Sun Jun 07 2026 12:09:22 GMT+0800 (中国标准时间)");
+					const updatedDate = new Date("Sun Dec 07 2025 12:02:22 GMT+0800");
+					const now = new Date();
+					const expirationValue = document.getElementById("expiration-date");
+					const expirationContainer = document.getElementById("expiration-container");
+					let daysAgo = Math.floor((now - updatedDate) / (1000 * 60 * 60 * 24));
+					if (expiredDate < now) {
+						expirationContainer.classList.remove("hidden");
+						// console.log(daysAgo)
+						expirationValue.innerHTML = expirationValue.innerHTML.replace("some", daysAgo);
+					}
+				} catch (e) {}
+			}
+			document.addEventListener("DOMContentLoaded", function() {
+				updateExpirationDate();
+			});
+			try {
+				swup.hooks.on("page:view", updateExpirationDate)
+			} catch (e) {}
+		</script>
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h1 id="一、-起源：为什么不直接用现成的平台？"><a href="#一、-起源：为什么不直接用现成的平台？" class="headerlink" title="一、 起源：为什么不直接用现成的平台？"></a>一、 起源：为什么不直接用现成的平台？</h1><p>我始终认为：<strong>拥有数据的绝对控制权比便利性更重要。</strong></p>
+<p>知乎、CSDN 等平台固然方便，但它们无法提供我想要的“沙盒体验”。我需要一个可以随意折腾代码、修改 CSS、配置网络协议，甚至自己写脚本自动化部署的地方。</p>
+<p>这个博客，就是我的<strong>技术试验场</strong>。它不仅仅是用来写字的，更是用来<strong>练手</strong>的。</p>
+<h1 id="二、-技术选型：追求“免费”与“控制”的平衡"><a href="#二、-技术选型：追求“免费”与“控制”的平衡" class="headerlink" title="二、 技术选型：追求“免费”与“控制”的平衡"></a>二、 技术选型：追求“免费”与“控制”的平衡</h1><p>基于<strong>工程权衡 (Trade-off)</strong> 的思维，我选择了以下技术栈：</p>
+<ul>
+<li><strong>核心框架</strong>：<strong>Hexo</strong> (Node.js 驱动，速度快，插件多)</li>
+<li><strong>托管平台</strong>：<strong>GitHub Pages</strong> (免费，版本控制，但国内访问慢)</li>
+<li><strong>网络加速</strong>：<strong>Cloudflare</strong> (CDN + DNS 解析 + SSL 证书)</li>
+<li><strong>开发工具</strong>：<strong>VS Code</strong> + <strong>Git Bash</strong></li>
+<li><strong>自动化</strong>：<strong>VS Code Tasks</strong> (自制 CI&#x2F;CD 流水线)</li>
+</ul>
+<p>这套组合实现了<strong>极低成本</strong>搭建一个高可用、全球加速的静态网站。</p>
+<h1 id="三、-踩坑与填坑：工程能力的磨炼"><a href="#三、-踩坑与填坑：工程能力的磨炼" class="headerlink" title="三、 踩坑与填坑：工程能力的磨炼"></a>三、 踩坑与填坑：工程能力的磨炼</h1><p>搭建过程远比我想象的曲折，每一个报错背后都是一个知识点。</p>
+<h2 id="起点：搭建完成后的“虚假繁荣”"><a href="#起点：搭建完成后的“虚假繁荣”" class="headerlink" title="起点：搭建完成后的“虚假繁荣”"></a>起点：搭建完成后的“虚假繁荣”</h2><p>故事的开始很顺利。基于 <strong>Hexo</strong> 框架，配合 <strong>GitHub Pages</strong> 的免费托管，我很快就在本地把博客跑了起来。</p>
+<p>看着终端里绿色的 <code>Hexo is running at http://localhost:4000</code>，我以为这就是结束。于是，我开始像装修新房一样，给博客安装各种插件：</p>
+<ul>
+<li>安装了炫酷的主题（Redefine）；</li>
+<li>配置了 RSS 订阅；</li>
+<li>加上了访问统计；</li>
+<li>引入了各种 Font Awesome 图标。</li>
+</ul>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img.ghost0190.xyz/img/20251207233639.png"
+                      alt="20251207233639"
+                ></p>
+<p>然而，当我不经过本地预览，直接通过 GitHub Pages 的默认域名访问时，现实给了我一盆冷水。</p>
+<p><strong>现象是残酷的：</strong></p>
+<ol>
+<li><strong>加载龟速</strong>：GitHub 的服务器在海外，国内访问延迟极高。</li>
+<li><strong>样式崩坏</strong>：很多插件依赖的 CDN（主要是 jsDelivr）在国内连通性极差，导致图标加载不出来，页面经常“缺胳膊少腿”。</li>
+</ol>
+<p>作为一个追求完美的工科生，我无法忍受自己的“产品”是这种半成品状态。优化，势在必行。</p>
+<h2 id="破局：拥有自己的域名"><a href="#破局：拥有自己的域名" class="headerlink" title="破局：拥有自己的域名"></a>破局：拥有自己的域名</h2><p>要解决网络问题，第一步是把“控制权”拿回来。GitHub 提供的 <code>username.github.io</code> 域名是寄人篱下的，我无法对它做深度的 DNS 优化。</p>
+<p>于是，我去购买了属于我的域名：<code>ghost0190.xyz</code>。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img.ghost0190.xyz/img/20251207233747.png"
+                      alt="20251207233747"
+                ></p>
+<p>这不仅仅是一个网址，它意味着：</p>
+<ul>
+<li><strong>品牌标识</strong>：这是我在互联网上的独立门牌号。</li>
+<li><strong>架构基础</strong>：有了它，我才能接入 Cloudflare 这样的顶级 CDN 服务商。</li>
+</ul>
+<h2 id="进阶：DNS-配置与-Cloudflare-的博弈"><a href="#进阶：DNS-配置与-Cloudflare-的博弈" class="headerlink" title="进阶：DNS 配置与 Cloudflare 的博弈"></a>进阶：DNS 配置与 Cloudflare 的博弈</h2><p>买完域名，我并没有直接解析到 GitHub，而是选择了 <strong>Cloudflare</strong> 来接管 DNS。这不仅是为了加速，更是为了安全（HTTPS）。</p>
+<h3 id="1-域名解析的“坑”"><a href="#1-域名解析的“坑”" class="headerlink" title="1. 域名解析的“坑”"></a>1. 域名解析的“坑”</h3><p>我将域名的 Nameservers 修改为 Cloudflare 提供的服务器。在设置 DNS 记录时，我没有选择直连（DNS Only），而是开启了 <strong>Proxy（小黄云）</strong> 模式。</p>
+<p>这意味着：<code>用户 -&gt; Cloudflare 边缘节点 -&gt; GitHub Pages</code>。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img.ghost0190.xyz/img/20251207234116.png"
+                      alt="20251207234116"
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img.ghost0190.xyz/img/20251207234129.png"
+                      alt="20251207234129"
+                ><br>理论上，Cloudflare 的全球 CDN 应该能加速访问，但在实际配置中，我遇到了两个大问题。</p>
+<h3 id="2-DNSSEC-的“僵尸死锁”"><a href="#2-DNSSEC-的“僵尸死锁”" class="headerlink" title="2. DNSSEC 的“僵尸死锁”"></a>2. DNSSEC 的“僵尸死锁”</h3><p>这是我遇到的最大 BOSS。在转移 DNS 的过程中，因为在 Namecheap 注册局残留了旧的 <strong>DS记录 (Delegation Signer)</strong> ，导致 DNSSEC 校验失败。</p>
+<p><strong>表现：</strong> 域名解析配置完全正确，但全球所有 DNS 服务器都拒绝解析，网站直接打不开。</p>
+<p><strong>解决：</strong> 使用 DNSViz 工具排查签名链，确认是“信任链断裂”。最终联系客服在注册局层面清除了残留记录，才解开了这个死锁。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img.ghost0190.xyz/img/f151da3503909515182e6d99ad4250e0.jpg"
+                      alt="f151da3503909515182e6d99ad4250e0"
+                ></p>
+<h3 id="3-速度优化的取舍"><a href="#3-速度优化的取舍" class="headerlink" title="3. 速度优化的取舍"></a>3. 速度优化的取舍</h3><p>接入 Cloudflare 后，我发现部分 JS 脚本依然加载缓慢。</p>
+<ul>
+<li><strong>Rocket Loader</strong> ：Cloudflare 自带的这个 JS 异步加载功能，虽然能跑分，但会破坏 Hexo 主题的渲染逻辑，导致页面空白。我果断关闭了它。</li>
+<li><strong>HTTP&#x2F;3(QUIC)</strong> ：为了对抗丢包，我强制开启了 HTTP&#x2F;3 协议，显著提升了在弱网环境下的连接稳定性。</li>
+</ul>
+<h2 id="终极挑战：自建图片-CDN-Serverless-实践"><a href="#终极挑战：自建图片-CDN-Serverless-实践" class="headerlink" title="终极挑战：自建图片 CDN (Serverless 实践)"></a>终极挑战：自建图片 CDN (Serverless 实践)</h2><p>为了解决第三方图床（如 jsDelivr）在国内不稳定的问题，我利用 <strong>Cloudflare Workers</strong> 编写了一个反向代理服务，将 <code>img.ghost0190.xyz</code> 的流量无缝转发到 GitHub 仓库，实现了图片加载速度的质的飞跃。</p>
+<blockquote>
+<p>💡 关于图床改造的具体技术细节，我在另一篇文章中有详细记录：《<a class="link"   target="_blank" rel="noopener" href="https://ghost0190.xyz/img/" >从 DNS 到反向代理：基于 Cloudflare Workers 自建高性能图片 CDN<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>》</p>
+</blockquote>
+<h1 id="四、工作流的优化：VS-Code-Automation"><a href="#四、工作流的优化：VS-Code-Automation" class="headerlink" title="四、工作流的优化：VS Code Automation"></a>四、工作流的优化：VS Code Automation</h1><p>我不喜欢繁琐的命令行。每次发文章都要敲 <code>hexo n</code>、<code>hexo g</code>、<code>hexo d</code>，这太“低效”了。<br>于是，我研究了 <strong>VS Code Tasks(<code>tasks.json</code>)</strong> ，编写了一套自动化脚本：</p>
+<ul>
+<li><strong>一键新建</strong>：输入文件名，自动生成带特定 Front-matter 的文章并打开编辑器。</li>
+<li><strong>一键部署</strong>：自动清理缓存、重新生成、推送到 GitHub，并附带时间戳 Commit 信息。</li>
+</ul>
+<div class="code-container" data-rel="Json"><figure class="iseeu highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="comment">// 任务 1: 部署 </span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Deploy Blog (一键部署)&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo clean &amp;&amp; hexo g &amp;&amp; hexo d&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;build&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;shell&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;executable&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cmd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                        <span class="string">&quot;/C&quot;</span></span><br><span class="line">                    <span class="punctuation">]</span></span><br><span class="line">                <span class="punctuation">&#125;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;presentation&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;reveal&quot;</span><span class="punctuation">:</span> <span class="string">&quot;always&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;panel&quot;</span><span class="punctuation">:</span> <span class="string">&quot;new&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;problemMatcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="comment">// 任务 2: 新建文章</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;New Post (新建文章)&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;shell&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hexo new \&quot;$&#123;input:postTitle&#125;\&quot; &amp;&amp; start .\\source\\_posts&quot;</span><span class="punctuation">,</span> </span><br><span class="line">            <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;shell&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                    <span class="attr">&quot;executable&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cmd.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">                    <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;/C&quot;</span></span><br><span class="line">            <span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="string">&quot;none&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;presentation&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;reveal&quot;</span><span class="punctuation">:</span> <span class="string">&quot;always&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;panel&quot;</span><span class="punctuation">:</span> <span class="string">&quot;new&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;problemMatcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;inputs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;postTitle&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;promptString&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;请输入新文章的标题&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></div>
+<p>现在，写博客对我来说，只是点击一下“运行任务”那么简单。</p>
+<h1 id="五、-结语：不仅是博客，更是成长的见证"><a href="#五、-结语：不仅是博客，更是成长的见证" class="headerlink" title="五、 结语：不仅是博客，更是成长的见证"></a>五、 结语：不仅是博客，更是成长的见证</h1><p>回顾这几天的搭建过程，我解决的问题涵盖了：</p>
+<ul>
+<li><strong>网络协议</strong> (DNS, HTTPS, CDN)</li>
+<li><strong>前端工程</strong> (Hexo, Node.js, CSS)</li>
+<li><strong>运维部署</strong> (Git, CI&#x2F;CD, Serverless)</li>
+</ul>
+<p><strong>计算机科学不仅是关于代码的，更是关于系统的。</strong> 这个博客就是我构建的第一个“小系统”。</p>
+<p>从最初简单的 hexo deploy，到后来深入研究 DNS 协议、CDN 原理、HTTPS 握手以及 Serverless 脚本。</p>
+<p>这个博客的搭建过程，其实就是我从一个“代码使用者”向“系统构建者”转变的过程。虽然折腾，但当看到网站在全球任何角落都能被瞬间打开时，那种工程师的成就感，是任何现成的平台都无法给予的。</p>
+<p><strong>Hello World, this is just the beginning.</strong></p>
+
+		</div>
+
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/%E6%8A%80%E6%9C%AF%EF%BC%8C%E7%BC%96%E7%A8%8B/">#技术，编程</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/img/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">从 DNS 到反向代理：基于 Cloudflare Workers 自建高性能图片 CDN</span>
+						<span class="post-nav-item">上一篇</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/gpu-update/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">GPU显卡驱动更新</span>
+						<span class="post-nav-item">下一篇</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">目录</div>
+		<div class="page-title">Hello World！--建站日记</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E8%B5%B7%E6%BA%90%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E7%94%A8%E7%8E%B0%E6%88%90%E7%9A%84%E5%B9%B3%E5%8F%B0%EF%BC%9F"><span class="nav-text">一、 起源：为什么不直接用现成的平台？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%EF%BC%9A%E8%BF%BD%E6%B1%82%E2%80%9C%E5%85%8D%E8%B4%B9%E2%80%9D%E4%B8%8E%E2%80%9C%E6%8E%A7%E5%88%B6%E2%80%9D%E7%9A%84%E5%B9%B3%E8%A1%A1"><span class="nav-text">二、 技术选型：追求“免费”与“控制”的平衡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E8%B8%A9%E5%9D%91%E4%B8%8E%E5%A1%AB%E5%9D%91%EF%BC%9A%E5%B7%A5%E7%A8%8B%E8%83%BD%E5%8A%9B%E7%9A%84%E7%A3%A8%E7%82%BC"><span class="nav-text">三、 踩坑与填坑：工程能力的磨炼</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E7%82%B9%EF%BC%9A%E6%90%AD%E5%BB%BA%E5%AE%8C%E6%88%90%E5%90%8E%E7%9A%84%E2%80%9C%E8%99%9A%E5%81%87%E7%B9%81%E8%8D%A3%E2%80%9D"><span class="nav-text">起点：搭建完成后的“虚假繁荣”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A0%B4%E5%B1%80%EF%BC%9A%E6%8B%A5%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="nav-text">破局：拥有自己的域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%EF%BC%9ADNS-%E9%85%8D%E7%BD%AE%E4%B8%8E-Cloudflare-%E7%9A%84%E5%8D%9A%E5%BC%88"><span class="nav-text">进阶：DNS 配置与 Cloudflare 的博弈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E7%9A%84%E2%80%9C%E5%9D%91%E2%80%9D"><span class="nav-text">1. 域名解析的“坑”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-DNSSEC-%E7%9A%84%E2%80%9C%E5%83%B5%E5%B0%B8%E6%AD%BB%E9%94%81%E2%80%9D"><span class="nav-text">2. DNSSEC 的“僵尸死锁”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96%E7%9A%84%E5%8F%96%E8%88%8D"><span class="nav-text">3. 速度优化的取舍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E6%9E%81%E6%8C%91%E6%88%98%EF%BC%9A%E8%87%AA%E5%BB%BA%E5%9B%BE%E7%89%87-CDN-Serverless-%E5%AE%9E%E8%B7%B5"><span class="nav-text">终极挑战：自建图片 CDN (Serverless 实践)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%9AVS-Code-Automation"><span class="nav-text">四、工作流的优化：VS Code Automation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81-%E7%BB%93%E8%AF%AD%EF%BC%9A%E4%B8%8D%E4%BB%85%E6%98%AF%E5%8D%9A%E5%AE%A2%EF%BC%8C%E6%9B%B4%E6%98%AF%E6%88%90%E9%95%BF%E7%9A%84%E8%A7%81%E8%AF%81"><span class="nav-text">五、 结语：不仅是博客，更是成长的见证</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-solid fa-code" style="color: #f54545"></i>&nbsp;&nbsp;<a href="/">Ghost0190</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 13 篇文章
+                    </span>
+                    
+                        <span>
+                            共 7.5k 字
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script false>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="站内搜索您需要的内容..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/build/tools/localSearch.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
