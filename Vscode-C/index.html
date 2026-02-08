@@ -695,7 +695,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1k 字</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.1k 字</span>
         </span>
     
     
@@ -715,7 +715,7 @@
 
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			<h3 id="一-配置VS-Code"><a href="#一-配置VS-Code" class="headerlink" title="一.配置VS Code"></a>一.配置VS Code</h3><p>Visual Studio Code是一款免费且基于开源的代码编辑器，功能强大，支持Git、调试和扩展。<br><a class="link"   target="_blank" rel="noopener" href="https://vscode.js.cn/docs" >Visual Studio Code文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/" >下载 Visual Studio Code<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+			<h1 id="一-配置VS-Code"><a href="#一-配置VS-Code" class="headerlink" title="一.配置VS Code"></a>一.配置VS Code</h1><p>Visual Studio Code是一款免费且基于开源的代码编辑器，功能强大，支持Git、调试和扩展。<br><a class="link"   target="_blank" rel="noopener" href="https://vscode.js.cn/docs" >Visual Studio Code文档<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/" >下载 Visual Studio Code<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>注意：安装时务必勾选 <strong>将Code注册为受支持的文件类型编辑器</strong> 和 <strong>添加到PATH</strong> ，推荐全选</p>
 <p>安装完成后打开，此时页面为英文，接下来安装中文拓展</p>
 <p>左侧边栏选择拓展选项，在搜索框内输入：Chinese 或 简体中文，选中Chinese (Simplified) (简体中文) ，并点击Install选项，并等待<br><img  
@@ -735,7 +735,17 @@
                      data-src="https://img.ghost0190.xyz/img/20251210181330.png"
                       alt="20251210181330"
                 ></p>
-<h3 id="二-配置编译器"><a href="#二-配置编译器" class="headerlink" title="二.配置编译器"></a>二.配置编译器</h3><p><strong>安装 MinGW-w64 工具链</strong><br>通过 <a class="link"   target="_blank" rel="noopener" href="https://www.msys2.org/" >MSYS2<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 获取最新版本的 MinGW-w64，它提供了 GCC、MinGW-w64 以及其他有用的 C++ 工具和库的最新原生版本。这将为你提供必要的工具来编译代码、调试代码并将其配置为与 <a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editing/intellisense" >IntelliSense<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 配合使用。</p>
+<h1 id="二-配置编译器"><a href="#二-配置编译器" class="headerlink" title="二.配置编译器"></a>二.配置编译器</h1><h2 id="方法一（推荐）："><a href="#方法一（推荐）：" class="headerlink" title="方法一（推荐）："></a>方法一（推荐）：</h2><p>使用MingGW-w64部署脚本：</p>
+<a class="button center large" target="_blank" rel="noopener" href='https://dl.ghost0190.xyz/MingGW-w64/mingGW-w64.zip' title='立即下载'><i class='fa-solid fa-download'></i> 立即下载</a>
+
+<p>下载后解压缩，并右键 <code>install.bat</code> 以管理员身份运行，等待运行完成即可。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://img.ghost0190.xyz/img/20260208115801.png"
+                      alt="20260208115801"
+                ></p>
+<h2 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h2><p><strong>安装 MinGW-w64 工具链</strong><br>通过 <a class="link"   target="_blank" rel="noopener" href="https://www.msys2.org/" >MSYS2<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 获取最新版本的 MinGW-w64，它提供了 GCC、MinGW-w64 以及其他有用的 C++ 工具和库的最新原生版本。这将为你提供必要的工具来编译代码、调试代码并将其配置为与 <a class="link"   target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editing/intellisense" >IntelliSense<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a> 配合使用。</p>
 <ol>
 <li>您可以从 MSYS2 页面下载最新的安装程序，或使用此<a class="link"   target="_blank" rel="noopener" href="https://github.com/msys2/msys2-installer/releases/download/2024-12-08/msys2-x86_64-20241208.exe" >安装程序的直接链接<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>。</li>
 <li>运行安装程序并按照安装向导的步骤进行作。请注意，MSYS2 需要 64 位 Windows 8.1 或更高版本。</li>
@@ -821,9 +831,9 @@
 			
 			
 			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/private01/">
+				<a class="next" rel="next" href="/priavte02/">
 					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">私密文章01</span>
+						<span class="post-nav-title-item truncate max-w-48">私密文章02</span>
 						<span class="post-nav-item">下一篇</span>
 					</span>
 					<span class="right arrow-icon flex justify-center items-center">
@@ -845,7 +855,7 @@
 	<div class="post-toc">
 		<div class="toc-title">目录</div>
 		<div class="page-title">Windows下的C语言编译环境配置</div>
-		<ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80-%E9%85%8D%E7%BD%AEVS-Code"><span class="nav-text">一.配置VS Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-text">二.配置编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%88%9B%E5%BB%BA-Hello-World-%E5%BA%94%E7%94%A8"><span class="nav-text">三.创建 Hello World 应用</span></a></li></ol>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E9%85%8D%E7%BD%AEVS-Code"><span class="nav-text">一.配置VS Code</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-text">二.配置编译器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89%EF%BC%9A"><span class="nav-text">方法一（推荐）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A"><span class="nav-text">方法二：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E5%88%9B%E5%BB%BA-Hello-World-%E5%BA%94%E7%94%A8"><span class="nav-text">三.创建 Hello World 应用</span></a></li></ol></li></ol></li></ol>
 
 	</div>
 </div>
