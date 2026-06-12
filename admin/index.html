@@ -7,14 +7,16 @@
 </head>
 <body>
   <script>
-    // 检测 OAuth 回调带回来的 token
-    var match = window.location.hash.match(/[?&]token=([^&]+)/);
-    if (match) {
-      window.__DECAP_TOKEN = match[1];
-      // 清理 URL，去掉 token
-      var cleanHash = window.location.hash.replace(/[?&]token=[^&]+/, '').replace(/^#\?&/, '#/').replace(/^#$/, '');
-      window.location.replace(window.location.pathname + cleanHash);
-    }
+    // 第一步：OAuth 回调回来 token 存 sessionStorage，清 URL
+    (function() {
+      var hash = window.location.hash || '';
+      var match = hash.match(/[?&]token=([^&]+)/);
+      if (match) {
+        sessionStorage.setItem('decap_oauth_token', match[1]);
+        var clean = window.location.hash.replace(/[?&]token=[^&]+/, '').replace(/^#\?&/, '#/').replace(/^#$/, '');
+        window.location.replace(window.location.pathname + clean);
+      }
+    })();
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.1/dist/decap-cms.js"
@@ -22,19 +24,23 @@
   </script>
 
   <script>
-    if (window.__DECAP_TOKEN) {
-      // 等 Decap CMS 加载完成，从正确 origin 发送 postMessage
+    // 第二步：从 sessionStorage 拿 token，通过 iframe 以正确 origin 发 postMessage
+    (function() {
+      var token = sessionStorage.getItem('decap_oauth_token');
+      if (!token) return;
+      sessionStorage.removeItem('decap_oauth_token');
+
       var check = setInterval(function() {
         if (window.CMS) {
           clearInterval(check);
-          window.open(
-            'https://decap-oauth.099115.xyz/complete?token=' + window.__DECAP_TOKEN,
-            'decapAuth',
-            'width=1,height=1'
-          );
+          // 用隐藏 iframe 代替 popup，不会被浏览器拦截
+          var iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.src = 'https://decap-oauth.099115.xyz/complete?token=' + encodeURIComponent(token);
+          document.body.appendChild(iframe);
         }
       }, 200);
-    }
+    })();
   </script>
 </body>
 </html>
