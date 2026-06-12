@@ -7,27 +7,34 @@
 </head>
 <body>
   <script>
-    // ============================================================
-    // Token 注入层：OAuth 回调后 URL 会带有 ?token=gho_xxx
-    // 在 Decap CMS 加载前把 token 存好，然后自动登录
-    // ============================================================
-    (function() {
-      var hash = window.location.hash || '';
-      var match = hash.match(/[?&]token=([^&]+)/);
-      if (match) {
-        var token = match[1];
-        // 存入 sessionStorage（Decap CMS 3.x 兼容读取）
-        var authData = JSON.stringify({ token: token, provider: 'github', backendName: 'github' });
-        sessionStorage.setItem('decap-cms-user', authData);
-        // 清理 URL 中的 token
-        window.location.hash = hash.replace(/[?&]token=[^&]+/, '').replace(/^\?&/, '');
-      }
-    })();
+    // 检测 OAuth 回调带回来的 token
+    var match = window.location.hash.match(/[?&]token=([^&]+)/);
+    if (match) {
+      window.__DECAP_TOKEN = match[1];
+      // 清理 URL，去掉 token
+      var cleanHash = window.location.hash.replace(/[?&]token=[^&]+/, '').replace(/^#\?&/, '#/').replace(/^#$/, '');
+      window.location.replace(window.location.pathname + cleanHash);
+    }
   </script>
 
-  <!-- Decap CMS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.1/dist/decap-cms.js"
     onerror="this.onerror=null;var s=document.createElement('script');s.src='https://unpkg.com/decap-cms@3.6.1/dist/decap-cms.js';document.head.appendChild(s);">
+  </script>
+
+  <script>
+    if (window.__DECAP_TOKEN) {
+      // 等 Decap CMS 加载完成，从正确 origin 发送 postMessage
+      var check = setInterval(function() {
+        if (window.CMS) {
+          clearInterval(check);
+          window.open(
+            'https://decap-oauth.099115.xyz/complete?token=' + window.__DECAP_TOKEN,
+            'decapAuth',
+            'width=1,height=1'
+          );
+        }
+      }, 200);
+    }
   </script>
 </body>
 </html>
