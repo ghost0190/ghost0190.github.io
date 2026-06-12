@@ -7,14 +7,13 @@
 </head>
 <body>
   <script>
-    // 第一步：OAuth 回调回来 token 存 sessionStorage，清 URL
+    // 第一步：从 query string 读 token，存 sessionStorage 后跳转干净 URL
     (function() {
-      var hash = window.location.hash || '';
-      var match = hash.match(/[?&]token=([^&]+)/);
-      if (match) {
-        sessionStorage.setItem('decap_oauth_token', match[1]);
-        var clean = window.location.hash.replace(/[?&]token=[^&]+/, '').replace(/^#\?&/, '#/').replace(/^#$/, '');
-        window.location.replace(window.location.pathname + clean);
+      var params = new URLSearchParams(window.location.search);
+      var token = params.get('token');
+      if (token) {
+        sessionStorage.setItem('decap_oauth_token', token);
+        window.location.replace(window.location.pathname);
       }
     })();
   </script>
@@ -24,7 +23,7 @@
   </script>
 
   <script>
-    // 第二步：从 sessionStorage 拿 token，通过 iframe 以正确 origin 发 postMessage
+    // 第二步：从 sessionStorage 拿 token，用 iframe 以正确 origin 发 postMessage
     (function() {
       var token = sessionStorage.getItem('decap_oauth_token');
       if (!token) return;
@@ -33,7 +32,6 @@
       var check = setInterval(function() {
         if (window.CMS) {
           clearInterval(check);
-          // 用隐藏 iframe 代替 popup，不会被浏览器拦截
           var iframe = document.createElement('iframe');
           iframe.style.display = 'none';
           iframe.src = 'https://decap-oauth.099115.xyz/complete?token=' + encodeURIComponent(token);
