@@ -1,0 +1,56 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // 任务 1: 部署 (保留你原有的部署任务)
+        {
+            "label": "Deploy Blog (一键部署)",
+            "type": "shell",
+            "command": "hexo clean && hexo g && hexo d",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                        "/C"
+                    ]
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        },
+        // 任务 2: 新建文章 (NEW TASK)
+        {
+            "label": "New Post (新建文章)",
+            "type": "shell",
+            "command": "hexo new \"${input:postTitle}\" && start .\\source\\_posts", 
+            "options": {
+                "shell": {
+                    "executable": "cmd.exe",
+                    "args": [
+                "/C"
+            ]
+        }
+    },
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
+        }
+    ],
+    // 关键：定义一个输入变量，让 VS Code 提示用户输入标题
+    "inputs": [
+        {
+            "id": "postTitle",
+            "type": "promptString",
+            "description": "请输入新文章的标题"
+        }
+    ]
+}

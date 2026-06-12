@@ -1,0 +1,126 @@
+# ============================================================
+# Decap CMS 配置 - Ghost0190 Blog
+# Docs: https://decapcms.org/docs/configuration-options/
+# ============================================================
+
+# --- Backend ---
+# 源仓库：Decap CMS 会直接向此仓库提交 markdown 文件
+# 请将 YOUR_SOURCE_REPO 替换为存放 Hexo 源码的仓库名
+backend:
+  name: github
+  repo: ghost0190/ghost0190.github.io
+  branch: main
+
+# 本地编辑模式：无需 OAuth，直接操作本地文件
+local_backend: true
+
+# --- 媒体文件 ---
+# 上传的图片存储在 source/images/，Hexo 构建后映射到 /images/
+media_folder: source/images
+public_folder: /images
+
+# --- 站点信息 ---
+locale: zh_Hans
+site_url: https://ghost0190.github.io
+display_url: https://ghost0190.github.io
+
+# --- 别名 (slug) 生成 ---
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# ============================================================
+# 内容集合 (Collections)
+# ============================================================
+collections:
+  # --- 文章 (Posts) ---
+  - name: posts
+    label: "文章"
+    label_singular: "文章"
+    folder: source/_posts
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
+    # 排序：按日期倒序
+    sortable_fields: ["date", "title", "sticky"]
+    view_filters:
+      - label: "已加密的文章"
+        field: password
+        pattern: ".+"
+      - label: "置顶文章"
+        field: sticky
+        pattern: "[1-9][0-9]*"
+    view_groups:
+      - label: "按分类分组"
+        field: categories
+      - label: "按年份分组"
+        field: date
+        pattern: '\d{4}'
+    fields:
+      - { label: "标题", name: title, widget: string, required: true }
+      - { label: "标签", name: tags, widget: list, required: false, default: [] }
+      - { label: "分类", name: categories, widget: list, required: false, default: [] }
+      - { label: "置顶优先级", name: sticky, widget: number, default: 0, value_type: int, min: 0, hint: "0=不置顶，数字越大越靠前" }
+      - { label: "发布日期", name: date, widget: datetime, required: true, format: "YYYY-MM-DD HH:mm:ss", picker_utc: false }
+      - { label: "更新日期", name: updated, widget: datetime, required: false, format: "YYYY-MM-DD HH:mm:ss", picker_utc: false }
+      - { label: "过期日期", name: expires, widget: datetime, required: false, format: "YYYY-MM-DD HH:mm:ss", picker_utc: false, hint: "留空则永不过期" }
+      - { label: "关键词", name: keywords, widget: string, required: false }
+      - { label: "摘要", name: excerpt, widget: text, required: false }
+      - { label: "描述", name: description, widget: text, required: false }
+      - { label: "顶部大图", name: top_img, widget: string, required: false }
+      - { label: "封面图", name: cover, widget: string, required: false }
+      - { label: "缩略图", name: thumbnail, widget: string, required: false }
+      - { label: "密码(加密)", name: password, widget: string, required: false, hint: "留空=公开文章；填写密码=加密文章" }
+      - { label: "启用评论", name: comments, widget: boolean, default: true }
+      - { label: "显示目录", name: toc, widget: boolean, default: true }
+      - { label: "目录编号", name: toc_number, widget: boolean, default: true }
+      - { label: "版权声明", name: copyright, widget: boolean, default: true }
+      - { label: "MathJax", name: mathjax, widget: boolean, default: false }
+      - { label: "KaTeX", name: katex, widget: boolean, default: false }
+      - { name: body, label: "正文", widget: markdown, required: true }
+
+  # --- 草稿 (Drafts) ---
+  - name: drafts
+    label: "草稿"
+    label_singular: "草稿"
+    folder: source/_drafts
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
+    fields:
+      - { label: "标题", name: title, widget: string, required: true }
+      - { label: "标签", name: tags, widget: list, required: false, default: [] }
+      - { name: body, label: "正文", widget: markdown, required: false }
+
+  # --- 页面 (Pages) ---
+  - name: pages
+    label: "页面"
+    label_singular: "页面"
+    folder: source
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    editor:
+      preview: false
+    # 嵌套文件夹支持 (如 source/about/index.md)
+    nested:
+      depth: 100
+    # 过滤：只显示非 _posts/_drafts 目录下的 .md 文件
+    # meta 字段让 Decap 知道这不是一个常规的 collection 文件夹
+    fields:
+      - { label: "标题", name: title, widget: string, required: true }
+      - { label: "日期", name: date, widget: datetime, required: false, format: "YYYY-MM-DD HH:mm:ss", picker_utc: false }
+      - { label: "类型", name: type, widget: string, required: false, hint: "如 about, tags, categories" }
+      - { label: "布局", name: layout, widget: string, required: false, hint: "Redefine 主题布局名称" }
+      - { label: "启用评论", name: comments, widget: boolean, default: false }
+      - { label: "显示目录", name: toc, widget: boolean, default: false }
+      - { label: "密码(加密)", name: password, widget: string, required: false }
+      - { name: body, label: "正文", widget: markdown, required: false }

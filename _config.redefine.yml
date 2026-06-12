@@ -1,0 +1,344 @@
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+# THEME REDEFINE CONFIGURATION FILE V2
+# BY EVANNOTFOUND
+# CUSTOMIZED FOR GHOST0190
+# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# BASIC INFORMATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+info:
+  # Site title
+  title: Ghost0190's Blog
+  # Site subtitle
+  subtitle: Coding, Design, and Life
+  # Author name
+  author: Ghost0190
+  # Site URL
+  url: https://ghost0190.github.io
+  avatar: https://img.099115.xyz/img/20260208121315.png
+
+# BASIC INFORMATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# IMAGE CONFIGURATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+defaults:
+  # Favicon
+  favicon: /images/redefine-favicon.svg
+  # Site logo
+  logo:
+  # Site avatar
+  avatar: https://img.099115.xyz/img/20260208121315.png
+# IMAGE CONFIGURATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# COLORS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+colors:
+  # Primary color
+  primary: "#A31F34"
+  # Secondary color (TBD)
+  secondary:
+  # Default theme mode (overwritten by browser preference usually)
+  # 建议默认开启 Dark 模式以符合赛博风格
+  default_mode: light # light, dark
+# COLORS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# SITE CUSTOMIZATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+global:
+  # Custom global fonts
+  fonts:
+    chinese:
+      enable: false
+      family:
+      url:
+    english:
+      enable: false
+      family:
+      url:
+    title:
+      enable: false
+      family:
+      url:
+  # Content max width
+  content_max_width: 1000px
+  # Sidebar width
+  sidebar_width: 210px
+  # Effects on mouse hover
+  hover:
+    shadow: true
+    scale: false
+  # Scroll progress
+  scroll_progress:
+    bar: true
+    percentage: true
+  # Website counter
+  website_counter:
+    url: https://cn.vercount.one/js
+    enable: true # 开启统计
+    site_pv: true
+    site_uv: true
+    post_pv: true
+  # Single page experience (swup)
+  single_page: false
+  # Preloader
+  preloader:
+    enable: true
+    custom_message: Ghost0190's Blog # 加载动画显示你的名字
+  # Side tools settings
+  side_tools:
+    gear_rotation: true
+    auto_expand: false
+  # Open graph
+  open_graph:
+    enable: true
+    image: /images/redefine-og.webp
+    description: Ghost0190的技术修炼之路.
+  # Google Analytics
+  google_analytics:
+    enable: false
+    id:
+# SITE CUSTOMIZATION <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# FONTAWESOME >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+fontawesome: # Pro v6.2.1
+  thin: false
+  light: false
+  duotone: false
+  sharp_solid: false
+# FONTAWESOME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# HOME BANNER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+home_banner:
+  # Whether to enable home banner
+  enable: true
+  # style of home banner
+  style: fixed # static or fixed
+  # Home banner image (使用默认路径，请确保 source/images 下有对应文件，或填网络链接)
+  image:
+    light: /images/wallhaven-wqery6-light.webp
+    dark: /images/wallhaven-wqery6-dark.webp
+  # Home banner title
+  title: Ghost0190's Blog
+  # Home banner subtitle
+  subtitle:
+    # 1. \
+    text: [Keep Coding.]
+
+    # 2. 开启一言配置
+    hitokoto:
+      enable: true # <--- 开启！
+      show_author: true # 显示句子的作者/出处（推荐开启，更有感觉）
+      api: https://v1.hitokoto.cn # 默认 API
+
+    # 打字机特效参数（保持默认即可）
+    typing_speed: 100
+    backing_speed: 80
+    starting_delay: 500
+    backing_delay: 1500
+    loop: false
+    smart_backspace: true
+  # Color of home banner text
+  text_color:
+    light: "#fff"
+    dark: "#d1d1b6"
+  # Specific style of the text
+  text_style:
+    title_size: 2.8rem
+    subtitle_size: 1.5rem
+    line_height: 1.2
+  custom_font:
+    enable: false
+    family:
+    url:
+  # Home banner social links
+  social_links:
+    enable: true
+    style: default
+    links:
+      github: https://github.com/ghost0190
+      email: ghost0190.out@outlook.com
+    qrs:
+# HOME BANNER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# NAVIGATION BAR >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+navbar:
+  auto_hide: false
+  color:
+    left: "#f78736"
+    right: "#367df7"
+    transparency: 35
+  width:
+    home: 1200px
+    pages: 1000px
+  links:
+    Home:
+      path: /
+      icon: fa-solid fa-home
+
+    # 已移除 Archives，添加 Tags 和 Categories
+    Tags:
+      path: /tags
+      icon: fa-solid fa-tags
+
+    Categories:
+      path: /categories
+      icon: fa-solid fa-folder-open
+
+    About:
+      path: /about
+      icon: fa-solid fa-user
+
+  search:
+    enable: true
+    preload: true
+# NAVIGATION BAR <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# HOME PAGE ARTICLE SETTINGS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+home:
+  sidebar:
+    enable: true
+    position: right
+    first_item: info
+    announcement:
+    show_on_mobile: true
+    links:
+  article_date_format: "YYYY/MM/DD HH:mm:ss"
+  excerpt_length: 80
+  categories:
+    enable: true
+    limit: 3
+  tags:
+    enable: true
+    limit: 3
+# HOME PAGE ARTICLE SETTINGS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# ARTICLE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+articles:
+  style:
+    font_size: 16px
+    line_height: 1.5
+    image_border_radius: 14px
+    image_alignment: center
+    image_caption: false
+    link_icon: true
+    delete_mask: false
+    title_alignment: left
+    headings_top_spacing:
+      h1: 3.2rem
+      h2: 2.4rem
+      h3: 1.9rem
+      h4: 1.6rem
+      h5: 1.4rem
+      h6: 1.3rem
+  word_count:
+    enable: true
+    count: true
+    min2read: true
+  author_label:
+    enable: false
+    auto: false
+    list: []
+  code_block:
+    copy: true
+    style: mac # Mac 风格代码块
+    highlight_theme:
+      light: github
+      dark: vs2015
+    font:
+      enable: false
+      family:
+      url:
+  toc:
+    enable: true
+    max_depth: 3
+    number: false
+    expand: true
+    init_open: true
+  copyright:
+    enable: false
+
+    default: cc_by_nc_sa
+  lazyload: true
+  pangu_js: false
+  recommendation:
+    enable: false
+    title: 推荐阅读
+    limit: 3
+    mobile_limit: 2
+    placeholder: /images/wallhaven-wqery6-light.webp
+    skip_dirs: []
+# ARTICLE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# COMMENT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+comment:
+  enable: false
+  system: giscus
+  config:
+    giscus:
+      repo: ghost0190/ghost0190.github.io # 已预填你的仓库
+      repo_id: # <--- 请填入 Giscus ID
+      category: Announcements
+      category_id: # <--- 请填入 Category ID
+      mapping: pathname
+      strict: 0
+      reactions_enabled: 1
+      emit_metadata: 0
+      lang: zh-CN
+      input_position: top
+      loading: lazy
+# COMMENT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# FOOTER >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+footer:
+  runtime: true
+  icon: '<i class="fa-solid fa-code" style="color: #f54545"></i>'
+  start: 2025/12/04 11:45:14
+  statistics: true
+  customize:
+  icp:
+    enable: false
+    number:
+    url:
+# FOOTER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+inject:
+  head:
+    # ... 其他配置 ...
+  body:
+    bottom:
+      # 插入这段 JS 代码，专门解决 PJAX 导致加密失效的问题
+      - <script>
+        document.addEventListener('swup:contentReplaced', function () {
+        // 如果检测到加密插件的对象存在，就强制重新初始化
+        if (window.hexo_blog_encrypt) {
+        window.hexo_blog_encrypt.init();
+        }
+        });
+        </script>
+
+# PLUGINS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+plugins:
+  feed:
+    enable: false
+  aplayer:
+    enable: false
+    type: fixed
+    audios:
+  mermaid:
+    enable: false
+    version: "11.4.1"
+# PLUGINS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# PAGE TEMPLATES >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+page_templates:
+  friends_column: 2
+  tags_style: list
+# PAGE TEMPLATES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# CDN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+cdn:
+  enable: false
+  provider: npmmirror
+  custom_url:
+# CDN <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end
+
+# DEVELOPER MODE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> start
+developer:
+  enable: false
+# DEVELOPER MODE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< end

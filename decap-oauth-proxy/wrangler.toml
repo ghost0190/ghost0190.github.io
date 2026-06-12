@@ -1,0 +1,9 @@
+# ============================================================
+# Cloudflare Worker 配置 — Decap CMS OAuth Proxy
+# ============================================================
+name = "decap-oauth-proxy"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+
+# 免费套餐：每天 10 万次请求，OAuth 场景完全够用
+# 首次部署后你会得到 URL: https://decap-oauth-proxy.YOUR-SUBDOMAIN.workers.dev

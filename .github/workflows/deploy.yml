@@ -1,0 +1,66 @@
+# ============================================================
+# Hexo Blog 自动部署工作流
+#
+# 触发时机：当源仓库收到 push（包括 Decap CMS 的编辑提交）
+# 动作：构建 Hexo → 部署到 GitHub Pages
+# ============================================================
+name: Deploy Hexo Site
+
+on:
+  push:
+    branches: [main]
+  # 允许手动触发
+  workflow_dispatch:
+
+# 并发控制：同一时间只运行一个部署
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # --- 1. 检出源仓库 ---
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      # --- 2. 设置 Node.js ---
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      # --- 3. 安装依赖 ---
+      - name: Install dependencies
+        run: npm ci
+
+      # --- 4. 构建 Hexo ---
+      - name: Generate site
+        run: npx hexo generate
+
+      # --- 5. 部署到 GitHub Pages ---
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # 使用 deploy_key 或 personal_token 认证
+          # deploy_key 方式（推荐）：
+          #   运行 ssh-keygen -t ed25519 -C "deploy-bot" -f deploy-key
+          #   将 deploy-key.pub 添加为 gh-pages 仓库的 Deploy Key（需要写权限）
+          #   将 deploy-key 私钥添加为当前仓库的 Actions Secret（命名为 DEPLOY_KEY）
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+
+          # 目标仓库（你的 GitHub Pages 仓库）
+          external_repository: ghost0190/ghost0190.github.io
+          publish_branch: main
+          publish_dir: ./public
+
+          # 提交信息
+          commit_message: "deploy: ${{ github.event.head_commit.message }}"
+
+          # 不保留历史（减少 Pages 仓库体积）
+          force_orphan: false

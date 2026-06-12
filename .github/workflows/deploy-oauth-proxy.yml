@@ -1,0 +1,29 @@
+# ============================================================
+# 部署 OAuth Proxy 到 Vercel（通过 GitHub Actions 绕过本地 SSL 问题）
+# ============================================================
+name: Deploy OAuth Proxy to Vercel
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'decap-oauth-proxy/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: decap-oauth-proxy
+        env:
+          GITHUB_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          GITHUB_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
