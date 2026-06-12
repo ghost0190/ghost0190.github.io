@@ -4,11 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>内容管理 - Ghost0190</title>
-  <link rel="icon" href="/images/favicon.ico" />
 </head>
 <body>
-  <!-- Include the Decap CMS script from CDN -->
-  <!-- CDN 1: jsdelivr (国内可访问) -->
+  <script>
+    // ============================================================
+    // Token 注入层：OAuth 回调后 URL 会带有 ?token=gho_xxx
+    // 在 Decap CMS 加载前把 token 存好，然后自动登录
+    // ============================================================
+    (function() {
+      var hash = window.location.hash || '';
+      var match = hash.match(/[?&]token=([^&]+)/);
+      if (match) {
+        var token = match[1];
+        // 存入 sessionStorage（Decap CMS 3.x 兼容读取）
+        var authData = JSON.stringify({ token: token, provider: 'github', backendName: 'github' });
+        sessionStorage.setItem('decap-cms-user', authData);
+        // 清理 URL 中的 token
+        window.location.hash = hash.replace(/[?&]token=[^&]+/, '').replace(/^\?&/, '');
+      }
+    })();
+  </script>
+
+  <!-- Decap CMS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.1/dist/decap-cms.js"
     onerror="this.onerror=null;var s=document.createElement('script');s.src='https://unpkg.com/decap-cms@3.6.1/dist/decap-cms.js';document.head.appendChild(s);">
   </script>
