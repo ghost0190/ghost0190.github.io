@@ -10,9 +10,7 @@ backend:
   name: github
   repo: ghost0190/ghost0190.github.io
   branch: main
-
-# 本地编辑模式：无需 OAuth，直接操作本地文件
-local_backend: true
+  base_url: https://decap-oauth.099115.xyz
 
 # --- 媒体文件 ---
 # 上传的图片存储在 source/images/，Hexo 构建后映射到 /images/
