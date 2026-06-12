@@ -46,22 +46,20 @@ collections:
     editor:
       preview: false
     # 排序：按日期倒序
-    sortable_fields:
-      fields: ["date", "title", "sticky"]
-      default: { field: "date", direction: "Descending" }
+    sortable_fields: ["date", "title", "sticky"]
     view_filters:
       - label: "已加密的文章"
         field: password
-        pattern: ['.+']
+        pattern: ".+"
       - label: "置顶文章"
         field: sticky
-        pattern: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+        pattern: "[1-9][0-9]*"
     view_groups:
       - label: "按分类分组"
         field: categories
       - label: "按年份分组"
         field: date
-        pattern: \d{4}
+        pattern: "\d{4}"
     fields:
       - { label: "标题", name: title, widget: string, required: true }
       - { label: "标签", name: tags, widget: list, required: false, default: [] }
