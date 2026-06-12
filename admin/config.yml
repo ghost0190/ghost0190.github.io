@@ -9,9 +9,8 @@
 backend:
   name: github
   repo: ghost0190/ghost0190.github.io
-  branch: main
-  # 使用 token 直接登录：访问 /admin/#/?token=你的ghp_token
-  # base_url 留空，不经过 OAuth 代理
+  branch: source
+  base_url: https://decap-oauth.099115.xyz
 
 # --- 媒体文件 ---
 # 上传的图片存储在 source/images/，Hexo 构建后映射到 /images/
