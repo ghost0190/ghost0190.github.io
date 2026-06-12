@@ -9,7 +9,7 @@
 backend:
   name: github
   repo: ghost0190/ghost0190.github.io
-  branch: main
+  branch: source
   base_url: https://decap-oauth.099115.xyz
 
 # --- 媒体文件 ---
