@@ -4,17 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>内容管理 - Ghost0190</title>
+  <script>
+    // 从 URL 提取 token
+    var params = new URLSearchParams(window.location.search);
+    window.__DECAP_TOKEN = params.get('token') || '';
+    if (window.__DECAP_TOKEN) {
+      sessionStorage.setItem('decap_oauth_token', window.__DECAP_TOKEN);
+      window.location.replace(window.location.pathname);
+    }
+  </script>
 </head>
 <body>
   <script>
-    (function() {
-      var params = new URLSearchParams(window.location.search);
-      var token = params.get('token');
-      if (token) {
-        sessionStorage.setItem('decap_oauth_token', token);
-        window.location.replace(window.location.pathname);
-      }
-    })();
+    // 如果有缓存的 token，阻止自动初始化，等拿到 config 后再手动 init
+    var token = sessionStorage.getItem('decap_oauth_token');
+    if (token) window.CMS_MANUAL_INIT = true;
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.6.1/dist/decap-cms.js"
@@ -22,25 +26,29 @@
   </script>
 
   <script>
-    (function() {
-      var token = sessionStorage.getItem('decap_oauth_token');
-      if (!token) return;
+    var token = sessionStorage.getItem('decap_oauth_token');
+    if (token) {
       sessionStorage.removeItem('decap_oauth_token');
+      // 手动初始化，直接把 token 写入 localStorage（Decap CMS redux-persist 格式）
+      var authState = {
+        auth: {
+          user: { token: token, provider: 'github', backendName: 'github' },
+          isFetching: false,
+          error: null,
+          _persist: { version: -1, rehydrated: true }
+        },
+        _persist: { version: -1, rehydrated: true }
+      };
+      // Decap CMS 3.x 用 redux-persist 存到 localStorage key 'redux'
+      localStorage.setItem('redux', JSON.stringify(authState));
 
-      var attempts = 0;
-      function tryDispatch() {
-        attempts++;
-        if (window.CMS && window.CMS.store && window.CMS.store.dispatch) {
-          window.CMS.store.dispatch({
-            type: 'AUTH_SUCCESS',
-            payload: { token: token, provider: 'github', backendName: 'github' }
-          });
-        } else if (attempts < 30) {
-          setTimeout(tryDispatch, 500);
+      var check = setInterval(function() {
+        if (window.CMS && typeof window.CMS.init === 'function') {
+          clearInterval(check);
+          CMS.init({ config: { load_config_file: true } });
         }
-      }
-      setTimeout(tryDispatch, 1500);
-    })();
+      }, 100);
+    }
   </script>
 </body>
 </html>
