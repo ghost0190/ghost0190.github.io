@@ -59,7 +59,7 @@ collections:
         field: categories
       - label: "按年份分组"
         field: date
-        pattern: "\d{4}"
+        pattern: '\d{4}'
     fields:
       - { label: "标题", name: title, widget: string, required: true }
       - { label: "标签", name: tags, widget: list, required: false, default: [] }
