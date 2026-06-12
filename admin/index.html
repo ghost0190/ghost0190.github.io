@@ -7,7 +7,6 @@
 </head>
 <body>
   <script>
-    // 第一步：从 query string 读 token，存 sessionStorage 后跳转干净 URL
     (function() {
       var params = new URLSearchParams(window.location.search);
       var token = params.get('token');
@@ -23,21 +22,24 @@
   </script>
 
   <script>
-    // 第二步：从 sessionStorage 拿 token，用 iframe 以正确 origin 发 postMessage
     (function() {
       var token = sessionStorage.getItem('decap_oauth_token');
       if (!token) return;
       sessionStorage.removeItem('decap_oauth_token');
 
-      var check = setInterval(function() {
-        if (window.CMS) {
-          clearInterval(check);
-          var iframe = document.createElement('iframe');
-          iframe.style.display = 'none';
-          iframe.src = 'https://decap-oauth.099115.xyz/complete?token=' + encodeURIComponent(token);
-          document.body.appendChild(iframe);
+      var attempts = 0;
+      function tryDispatch() {
+        attempts++;
+        if (window.CMS && window.CMS.store && window.CMS.store.dispatch) {
+          window.CMS.store.dispatch({
+            type: 'AUTH_SUCCESS',
+            payload: { token: token, provider: 'github', backendName: 'github' }
+          });
+        } else if (attempts < 30) {
+          setTimeout(tryDispatch, 500);
         }
-      }, 200);
+      }
+      setTimeout(tryDispatch, 1500);
     })();
   </script>
 </body>
